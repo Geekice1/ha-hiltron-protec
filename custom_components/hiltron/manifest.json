@@ -1,0 +1,11 @@
+{
+  "domain": "hiltron",
+  "name": "Hiltron Protec",
+  "version": "2.0.0",
+  "codeowners": [],
+  "config_flow": true,
+  "dependencies": [],
+  "documentation": "",
+  "iot_class": "local_polling",
+  "requirements": []
+}
