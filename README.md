@@ -33,7 +33,7 @@ Il componente comunica direttamente con la centrale tramite chiamate HTTP locali
 3. Clicca sui tre puntini in alto a destra e seleziona **Repository personalizzati** (*Custom repositories*).
 4. Incolla l'URL del tuo repository GitHub:
    ```
-   https://github.com/tuo-username/ha-hiltron-protec
+   https://github.com/Geekice1/ha-hiltron-protec
    ```
 5. Seleziona **Integrazione** come categoria e clicca su **Aggiungi**.
 6. Cerca **Hiltron Protec** nella lista di HACS, clicca su **Scarica** e riavvia Home Assistant.
