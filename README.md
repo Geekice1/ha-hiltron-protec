@@ -40,11 +40,16 @@ Il componente comunica direttamente con la centrale tramite chiamate HTTP locali
 
 ### Installazione Manuale
 
-1. Scarica il repository e copia la cartella `hiltron` (presente sotto `custom_components/`) all'interno della cartella `custom_components` della tua installazione di Home Assistant:
-   ```
+Se non utilizzi HACS, puoi installare l'integrazione manualmente:
+
+1. Vai nella sezione [Releases](https://github.com/Geekice1/ha-hiltron-protec/releases) del repository.
+2. Scarica il file **`custom_components.zip`** allegato all'ultima release.
+3. Estrai l'archivio sul tuo computer.
+4. Copia la cartella `hiltron` all'interno della cartella `custom_components` della tua configurazione di Home Assistant:
+   ```text
    /config/custom_components/hiltron/
    ```
-2. Riavvia Home Assistant.
+5. Riavvia Home Assistant.
 
 ## Configurazione
 
