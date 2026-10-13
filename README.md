@@ -13,17 +13,16 @@ Il componente comunica direttamente con la centrale tramite chiamate HTTP locali
 
 * **Configurazione Guidata da UI**: Nessun file YAML da modificare. Il flusso di configurazione (Config Flow) integra campi mascherati per password e PIN utente, con verifica istantanea delle credenziali prima del salvataggio.
 * **Polling Asincrono Locale**: Esecuzione efficiente e reattiva senza intaccare l'event loop di Home Assistant.
-* **Pannello Allarme Completo**: Entità `alarm_control_panel` sincronizzata con gli stati moderni di Home Assistant (`disarmed`, `armed_away`, `armed_home`, `triggered`).
-* **Sensori di Zona**: Entità `binary_sensor` dedicate per ciascuna linea (Zone 1–8) con `device_class` appropriate e monitoraggio linea 24H (Tamper/Manomissione).
+* **Pannello Allarme Completo**: Entità `alarm_control_panel` sincronizzata con gli stati moderni di Home Assistant (`disarmed`, `armed_away` (Inserito Totale), `armed_home` (parziale A), `armed_night` (Parziale B)  `triggered` (In allarme)).
+* **Sensori di Zona**: Entità `binary_sensor` dedicate per ciascuna linea (Zone 1–8) e monitoraggio linea 24H (Tamper/Manomissione).
 * **Sensore Testuale "Memoria Allarme"**: Entità testuale dedicata che elenca in chiaro quali zone hanno causato l'ultimo scatto d'allarme.
-* **Uscite Ausiliarie**: Entità `switch` per il comando e la gestione dei relè/attuatori.
+* **Uscite Ausiliarie**: Entità `switch` per la gestione delle esclusioni.
 * **Compatibilità Parallela con App Ufficiale**: L'integrazione **non interferisce né pregiudica** l'uso dell'applicazione ufficiale **MyHiltron**, che continuerà a funzionare regolarmente in parallelo.
 
 ## Requisiti e Best Practices di Rete
 
 * **Ambiente esclusivamente LAN**: Si raccomanda caldamente l'impiego di questa integrazione **esclusivamente all'interno della stessa rete locale (LAN)** tra l'istanza di Home Assistant e la scheda di rete della centrale Hiltron.
-* È vivamente sconsigliato esporre l'interfaccia HTTP della centrale direttamente su Internet o effettuare port forwarding senza adeguate misure di sicurezza (es. VPN dedicate come WireGuard/Tailscale).
-
+* È vivamente sconsigliato esporre l'interfaccia HTTP della centrale direttamente su Internet o effettuare port forwarding.
 ## Installazione
 
 ### Tramite HACS (Consigliato)
@@ -58,8 +57,8 @@ Se non utilizzi HACS, puoi installare l'integrazione manualmente:
 3. Compila i campi richiesti:
    * **Indirizzo IP**: IP locale assegnato alla centrale (es. `192.168.1.xxx`).
    * **Indirizzo MAC**: Indirizzo fisico della scheda DXETH (formato senza separatori, es. `001122334455`).
-   * **Password DXETH**: Password di accesso rete (campo protetto).
-   * **Codice Utente**: Codice PIN utente abilitato al comando (campo protetto).
+   * **Password DXETH**: Password di accesso sull'etichetta del modulo DXETH.
+   * **Codice Utente**: Codice PIN utente della centrale.
 4. Clicca su **Invia**: verrà eseguito un test immediato verso la centrale prima di registrare l'integrazione.
 
 ## Note di Sviluppo
