@@ -13,7 +13,7 @@ Il componente comunica direttamente con la centrale tramite chiamate HTTP locali
 
 * **Configurazione Guidata da UI**: Nessun file YAML da modificare. Il flusso di configurazione (Config Flow) integra campi mascherati per password e PIN utente, con verifica istantanea delle credenziali prima del salvataggio.
 * **Polling Asincrono Locale**: Esecuzione efficiente e reattiva senza intaccare l'event loop di Home Assistant.
-* **Pannello Allarme Completo**: Entità `alarm_control_panel` sincronizzata con gli stati moderni di Home Assistant (`disarmed`, `armed_away` (Inserito Totale), `armed_home` (parziale A), `armed_night` (Parziale B)  `triggered` (In allarme)).
+* **Pannello Allarme Completo**: Entità `alarm_control_panel` sincronizzata con gli stati moderni di Home Assistant (`disarmed`, `armed_away` (Inserito Totale), `armed_home` (parziale A), `armed_night` (Parziale B),  `triggered` (In allarme)).
 * **Sensori di Zona**: Entità `binary_sensor` dedicate per ciascuna linea (Zone 1–8) e monitoraggio linea 24H (Tamper/Manomissione).
 * **Sensore Testuale "Memoria Allarme"**: Entità testuale dedicata che elenca in chiaro quali zone hanno causato l'ultimo scatto d'allarme.
 * **Uscite Ausiliarie**: Entità `switch` per la gestione delle esclusioni.
