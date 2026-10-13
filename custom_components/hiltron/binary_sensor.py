@@ -77,12 +77,12 @@ class Hiltron24HSensor(BinarySensorEntity):
     async def async_added_to_hass(self):
         self.async_on_remove(self.coordinator.async_add_listener(self.async_write_ha_state))
 
-class HiltronMemorySensor(SensorEntity):
+class HiltronMemorySensor(BinarySensorEntity):
     def __init__(self, coordinator, entry):
         self.coordinator = coordinator
-        self._attr_unique_id = f"hiltron_memory_text_{entry.entry_id}"
+        self._attr_unique_id = f"hiltron_memory_{entry.entry_id}"
         self._attr_name = "Memoria Allarme"
-        self._attr_icon = "mdi:history"
+        self._attr_device_class = BinarySensorDeviceClass.PROBLEM
         self._attr_device_info = {"identifiers": {(DOMAIN, entry.entry_id)}}
 
     @property
@@ -91,16 +91,29 @@ class HiltronMemorySensor(SensorEntity):
     def available(self): return self.coordinator.last_update_success
 
     @property
-    def native_value(self):
+    def _active_memories(self):
         data = self.coordinator.data
         if not data or len(data) <= 37:
-            return "Nessuna"
+            return []
         mem_1_8 = data[35]
         mem_24h = data[37]
-        active_mem = [f"Zona {z}" for z in range(1, 9) if (mem_1_8 & (1 << (z - 1))) > 0]
+        active = [f"Zona {z}" for z in range(1, 9) if (mem_1_8 & (1 << (z - 1))) > 0]
         if (mem_24h & 1) > 0:
-            active_mem.append("Zona 24H")
-        return ", ".join(active_mem) if active_mem else "Nessuna"
+            active.append("Zona 24H")
+        return active
+
+    @property
+    def is_on(self):
+        # False (spento/grigio) se lista vuota, True (giallo/rosso) se c'è memoria
+        return len(self._active_memories) > 0
+
+    @property
+    def extra_state_attributes(self):
+        mems = self._active_memories
+        return {
+            "zones": mems,
+            "description": ", ".join(mems) if mems else "Nessuna"
+        }
 
     async def async_added_to_hass(self):
         self.async_on_remove(self.coordinator.async_add_listener(self.async_write_ha_state))
